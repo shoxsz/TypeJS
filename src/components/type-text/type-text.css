@@ -1,0 +1,18 @@
+.type-text{
+  margin: auto;
+}
+
+.type-text textarea{
+  width: 544px;
+  height: 300px;
+  margin-bottom: 24px;
+}
+
+.type-text.__description{
+  margin-bottom: 8px
+}
+
+.type-text input{
+  width: 544px;
+  height: 22px
+}
