@@ -11,7 +11,13 @@ const TypeText = ({ data }) => {
   }
 
   const handleKeyDown = (event) => {
-    console.log(event)
+    if(typedData.length === data.length){
+      event.preventDefault()
+    }
+
+    if(["Backspace", " "].includes(event.key)){
+      event.preventDefault()
+    }
   }
 
   const renderData = () => {
@@ -20,10 +26,10 @@ const TypeText = ({ data }) => {
       const correctChar = data.charAt(index)
 
       if(correctChar !== typedChar){
-        return <span className="type-text__typed-wrong">{ correctChar }</span>
+        return <span key={ index } className="type-text__typed-wrong">{ correctChar }</span>
       }
 
-      return <span className="type-text__typed-right">{ correctChar }</span>
+      return <span key={ index } className="type-text__typed-right">{ correctChar }</span>
     })
 
     return (
@@ -37,7 +43,7 @@ const TypeText = ({ data }) => {
     <div className="type-text">
       { renderData() }
       <div className="type-text__description">Type what you see in the textarea above:</div>
-      <input ref={ inputRef } onKeyDown={ handleKeyDown } onChange={ e => handleChange(e) } type="text"/>
+      <input ref={ inputRef } onPaste={ e => e.preventDefault() } onKeyDown={ handleKeyDown } onChange={ e => handleChange(e) } type="text"/>
     </div>
   )
 }
