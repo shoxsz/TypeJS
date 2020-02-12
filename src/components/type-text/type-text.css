@@ -2,17 +2,28 @@
   margin: auto;
 }
 
-.type-text textarea{
+.type-text__totype{
   width: 544px;
   height: 300px;
   margin-bottom: 24px;
+  background-color: white;
+  border-radius: 4px;
+  padding: 12px;
 }
 
-.type-text.__description{
+.type-text__description{
   margin-bottom: 8px
 }
 
 .type-text input{
   width: 544px;
-  height: 22px
+  height: 22px;
+}
+
+.type-text__typed-right{
+  color: green;
+}
+
+.type-text__typed-wrong{
+  color: red;
 }
