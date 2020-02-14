@@ -6,7 +6,6 @@ import { RandomGenerator, ALL_SYMBOLS } from "../../texts/random/random";
 const GamePage = () => {
   const [data, setData] = React.useState(() => {
     const data = RandomGenerator({ symbols: [ ALL_SYMBOLS ] })()
-    console.log(data)
     return data
   })
 

@@ -60,6 +60,6 @@ export const RandomGenerator = (options) => {
       generated[randomIndex] = aux
     }
 
-    return generated.toString()
+    return generated.join('')
   }
 }
