@@ -22,10 +22,21 @@
   height: 22px;
 }
 
-.type-text__typed-right{
-  color: green;
+.type-text__typed{
+  font-size: 24px;
+  margin-left: 4px;
 }
 
-.type-text__typed-wrong{
+.type-text__typed.right{
+  color: green;
+  background-color: #aaffaa ;
+}
+
+.type-text__typed.wrong{
   color: red;
+  background-color: #ffaaaa;
+}
+
+.type-text__typed.none{
+  color: blue;
 }

@@ -21,20 +21,24 @@ const TypeText = ({ data }) => {
   }
 
   const renderData = () => {
-    const spans = typedData.split('').map((str, index) => {
+    const typedSpans = typedData.split('').map((str, index) => {
       const typedChar = typedData.charAt(index)
       const correctChar = data.charAt(index)
 
       if(correctChar !== typedChar){
-        return <span key={ index } className="type-text__typed-wrong">{ correctChar }</span>
+        return <span key={ index } className="type-text__typed wrong">{ correctChar }</span>
       }
 
-      return <span key={ index } className="type-text__typed-right">{ correctChar }</span>
+      return <span key={ index } className="type-text__typed right">{ correctChar }</span>
+    })
+
+    const typedNoneSpans = data.substr(typedData.length).split('').map((char, index) => {
+      return <span key={ index } className="type-text__typed none">{ char }</span>
     })
 
     return (
       <div className="type-text__totype">
-        { spans }{ data.substr(typedData.length) }
+        { typedSpans }{ typedNoneSpans }
       </div>
     )
   }
