@@ -25,6 +25,7 @@
 .type-text__typed{
   font-size: 24px;
   margin-left: 4px;
+  position: relative;
 }
 
 .type-text__typed.right{
@@ -39,4 +40,20 @@
 
 .type-text__typed.none{
   color: blue;
+}
+
+.type-text__typed-last{
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  z-index: 999;
+  left: 24px;
+}
+
+.typed-text__typed-last.right{
+  background-color: #aaffaa;
+}
+
+.typed-text__typed-last.wrong{
+  background-color: #ffaaaa;
 }

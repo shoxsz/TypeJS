@@ -1,6 +1,7 @@
 import React from 'react'
 
 import './type-text.css'
+import Char from './char'
 
 const TypeText = ({ data }) => {
   const [typedData, setTypedData] = React.useState('')
@@ -22,18 +23,16 @@ const TypeText = ({ data }) => {
 
   const renderData = () => {
     const typedSpans = typedData.split('').map((str, index) => {
+
       const typedChar = typedData.charAt(index)
       const correctChar = data.charAt(index)
+      const isLast = index == typedData.length - 1
 
-      if(correctChar !== typedChar){
-        return <span key={ index } className="type-text__typed wrong">{ correctChar }</span>
-      }
-
-      return <span key={ index } className="type-text__typed right">{ correctChar }</span>
+      return <Char key={ index } char={ correctChar } typed={ typedChar } isLast={ isLast } />
     })
 
     const typedNoneSpans = data.substr(typedData.length).split('').map((char, index) => {
-      return <span key={ index } className="type-text__typed none">{ char }</span>
+      return <Char key={ index } char={ char } isLast={ false } />
     })
 
     return (
