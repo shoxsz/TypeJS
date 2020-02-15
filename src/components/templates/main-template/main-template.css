@@ -1,6 +1,7 @@
 .main-template{
   font-family: Rubik;
-  padding: 196px;
-  display: flex;
+  padding-left: 196px;
+  padding-right: 196px;
+  padding-top: 20px;
   background-color: #f7f7f7;
 }

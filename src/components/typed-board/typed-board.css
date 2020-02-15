@@ -1,0 +1,24 @@
+.typed-board{
+  width: 64px;
+  height: 64px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 24px;
+}
+
+.typed-board.right{
+  background-color: #aaffaa;
+  color: #008000;
+}
+
+.typed-board.wrong{
+  background-color: #ffaaaa;
+  color: #ff0000;
+}
+
+.typed-board.none{
+  background-color: #aaaaaa;
+  color: #eeeeee
+}

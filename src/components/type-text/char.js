@@ -9,8 +9,10 @@ const Char = ({ char }, ref) => {
       type: (typed) => {
         if(char !== typed){
           setClassNames([ ...classNames, "wrong" ])
+          return false
         }else{
           setClassNames([ ...classNames, "right" ])
+          return true
         }
       }
     })

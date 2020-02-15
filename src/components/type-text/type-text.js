@@ -3,7 +3,7 @@ import React from 'react'
 import './type-text.css'
 import Char from './char'
 
-const TypeText = ({ data }) => {
+const TypeText = ({ data, onType }) => {
   const [typedData, setTypedData] = React.useState('')
   const [render, setRender] = React.useState()
   const [renderRefs, setRenderRefs] = React.useState([])
@@ -27,9 +27,12 @@ const TypeText = ({ data }) => {
 
   const handleChange = () => {
     const value = inputRef.current.value
-    const char = renderRefs[value.length-1]
-    char.current.type(value[value.length - 1])
+    const char = renderRefs[value.length - 1]
+    const isRight = char.current.type(value[value.length - 1])
     setTypedData(value)
+    if(!!onType){
+      onType(value[value.length - 1], isRight)
+    }
   }
 
   const handleKeyDown = (event) => {
