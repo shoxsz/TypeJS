@@ -1,7 +1,7 @@
 import React from 'react'
 import MainTemplate from '../../templates/main-template/main-template'
 import TypeText from '../../type-text/type-text'
-import { RandomGenerator, ALL_SYMBOLS, LETTERS } from "../../texts/random/random";
+import { RandomGenerator, ALL_SYMBOLS, LETTERS, LETTERS_CAP } from "../../texts/random/random";
 import TypedBoard from '../../typed-board/typed-board';
 
 import './game.css'
@@ -9,7 +9,7 @@ import './game.css'
 const GamePage = () => {
   const [data, setData] = React.useState(() => {
     // const data = RandomGenerator({ symbols: [ ALL_SYMBOLS ] })()
-    const data = RandomGenerator( { symbols: [LETTERS], length: 2000 } )()
+    const data = RandomGenerator( { symbols: [LETTERS, { weight: 2, symbols: LETTERS_CAP }], length: 100 } )()
     
     return data
   })

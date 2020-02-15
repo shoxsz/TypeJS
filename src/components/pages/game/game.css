@@ -4,7 +4,3 @@
   flex-direction: column;
   width: 100%;
 }
-
-.typed-board-container:first-child{
-  margin-bottom: 24px;
-}

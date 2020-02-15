@@ -21,6 +21,7 @@ export const RandomGenerator = (options) => {
         weight += symbol.weight
         weighted_symbols.push(symbol)
       }else{
+        weight += 1
         non_weighted_symbols = [ ...non_weighted_symbols, ...symbol ]
       }
     }
@@ -33,16 +34,16 @@ export const RandomGenerator = (options) => {
     const weighted_generated = []
     let count_generated = 0
     for(let weighted_symbol of weighted_symbols){
-      let count = (weighted_symbol.weight / weight) * length
-      const generated = []
+      let count = Math.floor((weighted_symbol.weight / weight) * length)
       while(count--){
         const index = Math.ceil(Math.random() * (weighted_symbol.symbols.length - 1))
-        generated.push(weighted_symbol.symbols[index])
+        weighted_generated.push(weighted_symbol.symbols[index])
       }
 
-      weighted_generated.push(generated)
       count_generated += count
     }
+
+    console.log(weighted_generated.join(''))
 
     const non_weighted_generated = []
     //generate the remaining symbols for the non weighted
