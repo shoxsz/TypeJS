@@ -29,13 +29,17 @@ export const RandomGenerator = (options) => {
     if(!weight){
       weight = 1
     }
-
+    console.log("started gen --------------------")
     //generate random symbols for the weighted symbols
     const weighted_generated = []
     let count_generated = 0
     for(let weighted_symbol of weighted_symbols){
-      let count = Math.floor((weighted_symbol.weight / weight) * length)
+      let count = Math.ceil((weighted_symbol.weight / weight) * length)
+      if(count + count_generated > length){
+        count -= count_generated + count - length
+      }
       count_generated += count
+      console.log("weighted:", count)
       while(count--){
         const index = Math.ceil(Math.random() * (weighted_symbol.symbols.length - 1))
         weighted_generated.push(weighted_symbol.symbols[index])
@@ -48,7 +52,10 @@ export const RandomGenerator = (options) => {
       const index = Math.ceil(Math.random() * (non_weighted_symbols.length - 1))
       non_weighted_generated.push(non_weighted_symbols[index])
     }
-    console.log(non_weighted_generated)
+    
+    console.log("finished gen -------------------")
+    console.log("total non weighted:", non_weighted_generated.length)
+    console.log("total weighted:", weighted_generated.length)
 
     //merge & shuffle the arrays
     const generated = [ ...non_weighted_generated, ...weighted_generated ]
