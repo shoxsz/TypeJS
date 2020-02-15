@@ -1,24 +1,27 @@
 import React from 'react'
-import JustTyped from './just-typed'
 
-const Char = ({ char, typed, isLast }) => {
+const Char = ({ char }, ref) => {
+  const [classNames, setClassNames] = React.useState(["type-text__typed", "none"])
 
-  const classNames = ["type-text__typed"]
-
-  if(!typed){
-    classNames.push("none")
-  }else if(char !== typed){
-    classNames.push("wrong")
-  }else{
-    classNames.push("right")
-  }
+  React.useImperativeHandle(
+    ref,
+    () => ({
+      type: (typed) => {
+        if(char !== typed){
+          setClassNames([ ...classNames, "wrong" ])
+        }else{
+          setClassNames([ ...classNames, "right" ])
+        }
+      }
+    })
+  )
 
   return (
     <span className={ classNames.join(' ') }>
     { char }
-    { <JustTyped correct={ char } typed={ typed } show={ isLast } /> }
+    {/* { <JustTyped correct={ char } typed={ typed } show={ isLast } /> } */}
   </span>
   )
 }
 
-export default Char
+export default React.forwardRef(Char)

@@ -26,6 +26,9 @@
   font-size: 24px;
   margin-left: 4px;
   position: relative;
+  border-radius: 4px;
+  padding-left: 2px;
+  padding-right: 2px;
 }
 
 .type-text__typed.right{
