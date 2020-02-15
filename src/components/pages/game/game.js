@@ -8,7 +8,6 @@ import './game.css'
 
 const GamePage = () => {
   const [data, setData] = React.useState(() => {
-    // const data = RandomGenerator({ symbols: [ ALL_SYMBOLS ] })()
     const data = RandomGenerator( { symbols: [LETTERS, { weight: 2, symbols: LETTERS_CAP }], length: 100 } )()
     
     return data
