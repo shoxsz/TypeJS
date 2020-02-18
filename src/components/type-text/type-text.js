@@ -3,10 +3,11 @@ import React from 'react'
 import './type-text.css'
 import Char from './char'
 
-const TypeText = ({ data, onType }) => {
-  const [typedData, setTypedData] = React.useState('')
+const TypeText = ({ data, onType, onFinish }) => {
   const [render, setRender] = React.useState()
   const [renderRefs, setRenderRefs] = React.useState([])
+  const [stats, setStats] = React.useState({ right: 0, wrong: 0 })
+  const [finished, setFinished] = React.useState(false)
   const inputRef = React.createRef()
 
   React.useEffect(() => {
@@ -15,7 +16,7 @@ const TypeText = ({ data, onType }) => {
 
   const buildTextToRender = () => {
     const refs = []
-    const text = data.substr(typedData.length).split('').map((char, index) => {
+    const text = data.substr(inputRef.current.value.length).split('').map((char, index) => {
       const ref = React.createRef()
       refs.push(ref)
       return <Char ref={ ref } key={ index } char={ char }/>
@@ -29,15 +30,24 @@ const TypeText = ({ data, onType }) => {
     const value = inputRef.current.value
     const char = renderRefs[value.length - 1]
     const isRight = char.current.type(value[value.length - 1])
-    setTypedData(value)
+    setStats({
+      wrong: stats.wrong + (isRight ? 0 : 1),
+      right: stats.right + (isRight ? 1: 0)
+    })
+
     if(!!onType){
       onType(value[value.length - 1], isRight)
     }
   }
 
   const handleKeyDown = (event) => {
-    if(typedData.length === data.length){
+    if(event.target.value.length === data.length){
       event.preventDefault()
+
+      if(!finished && !!onFinish){
+        setFinished(true)
+        onFinish(stats)
+      }
     }
 
     if(["Backspace", " "].includes(event.key)){
