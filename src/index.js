@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import GamePage from './components/pages/game/game';
+import GamePage from './pages/game/game';
 
 ReactDOM.render(<GamePage/>, document.getElementById('root'));
 

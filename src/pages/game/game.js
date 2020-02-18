@@ -1,11 +1,11 @@
 import React from 'react'
-import MainTemplate from '../../templates/main-template/main-template'
-import TypeText from '../../type-text/type-text'
-import { RandomGenerator, LETTERS, LETTERS_CAP, MATH_SYMBOLS } from "../../texts/random/random";
-import TypedBoard from '../../typed-board/typed-board';
 
 import './game.css'
-import Timer from '../../timer/timer';
+import MainTemplate from '../../templates/main-template/main-template'
+import { RandomGenerator, LETTERS, LETTERS_CAP, MATH_SYMBOLS } from '../../texts/random/random';
+import TypedBoard from '../../components/typed-board/typed-board'
+import Timer from '../../components/timer/timer'
+import TypeText from '../../components/type-text/type-text'
 
 const GamePage = () => {
   const [data, setData] = React.useState(() => {
@@ -20,7 +20,7 @@ const GamePage = () => {
           },
           { 
             weight: 4, 
-            symbols: LETTERS_CAP 
+            symbols: LETTERS_CAP
           },
           {
             weight: 3,
@@ -37,20 +37,8 @@ const GamePage = () => {
   const [typed, setTyped] = React.useState({})
   const [stop, setStop] = React.useState(true)
 
-  const timerRef = React.createRef()
-
   const handleOnType = (typed, right) => {
     setTyped({ char: typed, right: right })
-  }
-
-  const stopTimer = () => {
-    if(stop){
-      timerRef.current.start()
-    }else{
-      timerRef.current.stop()
-    }
-
-    setStop(!stop)
   }
 
   return (
@@ -58,7 +46,7 @@ const GamePage = () => {
       <div className="typed-board-container">
         <TypedBoard char={ typed.char } right={ typed.right } />
         <TypeText data={ data } onType={ handleOnType } />
-        <Timer stop={ stop } ref={ timerRef }/>
+        <Timer stop={ stop }/>
         <button onClick={ e => setStop(!stop) } >{ stop ? "Start" : "Stop" }</button>
       </div>
     </MainTemplate>
