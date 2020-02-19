@@ -38,16 +38,26 @@ const GamePage = () => {
   const [stop, setStop] = React.useState(true)
 
   const handleOnType = (typed, right) => {
+    if(stop){
+      setStop(false)
+    }
+    
     setTyped({ char: typed, right: right })
+  }
+
+  const handleOnEnter = () => {
+    if(!stop){
+      setStop(true)
+    }
   }
 
   return (
     <MainTemplate>
       <div className="typed-board-container">
+        <h2>{ !stop && "Typing..." || "Resting" }</h2>
         <TypedBoard char={ typed.char } right={ typed.right } />
-        <TypeText data={ data } onType={ handleOnType } />
+        <TypeText data={ data } onType={ handleOnType } onEnter={ handleOnEnter } />
         <Timer stop={ stop }/>
-        <button onClick={ e => setStop(!stop) } >{ stop ? "Start" : "Stop" }</button>
       </div>
     </MainTemplate>
   )

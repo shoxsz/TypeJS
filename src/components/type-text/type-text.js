@@ -3,7 +3,7 @@ import React from 'react'
 import './type-text.css'
 import Char from './char'
 
-const TypeText = ({ data, onType, onFinish }) => {
+const TypeText = ({ data, onType, onFinish, onEnter }) => {
   const [render, setRender] = React.useState()
   const [renderRefs, setRenderRefs] = React.useState([])
   const [stats, setStats] = React.useState({ right: 0, wrong: 0 })
@@ -53,6 +53,13 @@ const TypeText = ({ data, onType, onFinish }) => {
     if(["Backspace", " "].includes(event.key)){
       event.preventDefault()
     }
+
+    if(event.key == "Enter"){
+      event.preventDefault()
+      if(!!onEnter){
+        onEnter()
+      }
+    }
   }
 
 
@@ -61,7 +68,7 @@ const TypeText = ({ data, onType, onFinish }) => {
       <div className="type-text__totype">
         { render }
       </div>
-      <div className="type-text__description">Type what you see in the textarea above:</div>
+      <div className="type-text__description">Type what you see in the textarea above(Press enter to STOP):</div>
       <input ref={ inputRef } onPaste={ e => e.preventDefault() } onKeyDown={ handleKeyDown } onChange={ e => handleChange(e) } type="text"/>
     </div>
   )
