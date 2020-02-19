@@ -64,7 +64,7 @@ const Timer = (props, ref) => {
   const getTimer = () => {
     const timeDiff = (timer.elapsed - timer.start) / 1000
     const minutes = Math.floor(timeDiff / 60)
-    const seconds = timeDiff - minutes
+    const seconds = (timeDiff - minutes)
 
     return (
       <div className="game-timer">

@@ -6,36 +6,27 @@ import { RandomGenerator, LETTERS, LETTERS_CAP, MATH_SYMBOLS } from '../../texts
 import TypedBoard from '../../components/typed-board/typed-board'
 import Timer from '../../components/timer/timer'
 import TypeText from '../../components/type-text/type-text'
+import RandomConfigure from '../../components/random-configure/random-configure';
 
 const GamePage = () => {
-  const [data, setData] = React.useState(() => {
-    const data = RandomGenerator
-    (
+  const [params, setParams] = React.useState({
+    symbols: 
+    [
       {
-        symbols: 
-        [
-          {
-            weight: 1,
-            symbols: LETTERS
-          },
-          { 
-            weight: 4, 
-            symbols: LETTERS_CAP
-          },
-          {
-            weight: 3,
-            symbols: MATH_SYMBOLS
-          }
-        ], 
-        length: 100 
-      } 
-    )()
-    
-    return data
+        weight: 1,
+        symbols: LETTERS
+      }
+    ], 
+    length: 100 
   })
 
+  const [data, setData] = React.useState('')
   const [typed, setTyped] = React.useState({})
   const [stop, setStop] = React.useState(true)
+
+  React.useEffect(() => {
+    setData(RandomGenerator(params)())
+  }, [params])
 
   const handleOnType = (typed, right) => {
     if(stop){
@@ -54,6 +45,9 @@ const GamePage = () => {
   return (
     <MainTemplate>
       <div className="typed-board-container">
+        <div>
+          <RandomConfigure initial={ params } onChange={ params => setParams(params) } />
+        </div>
         <h2>{ !stop && "Typing..." || "Resting" }</h2>
         <TypedBoard char={ typed.char } right={ typed.right } />
         <TypeText data={ data } onType={ handleOnType } onEnter={ handleOnEnter } />

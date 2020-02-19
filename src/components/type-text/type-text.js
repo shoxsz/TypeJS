@@ -12,7 +12,7 @@ const TypeText = ({ data, onType, onFinish, onEnter }) => {
 
   React.useEffect(() => {
     buildTextToRender()
-  }, [])
+  }, [data])
 
   const buildTextToRender = () => {
     const refs = []
